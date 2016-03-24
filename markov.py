@@ -1,7 +1,9 @@
 from random import randint
 
-class Markov:
+# This class generates a Markov chain based on a given string. It can
+# then be used to generate sentences based on that Markov chain.
 
+class Markov:
     def __init__(self, text):
         self.eos = '{eos}'  # end of sentence
         map = {}
