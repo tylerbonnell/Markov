@@ -1,8 +1,8 @@
-import markov
+from markov import Markov
 
 def main():
-    ch = markov.chain("here is a paragraph of a bunch of stupid words and shit and shit and shit")
-    print ch
+    mk = Markov("here is a paragraph of a bunch of stupid words and shit and shit and shit")
+    print mk.sentence()
 
 if __name__ == "__main__":
     main()
