@@ -1,6 +1,11 @@
+# Looks at a certain number of comments from a user's reddit account
+# (up to 1000) and generates sentences based off of what it finds
+
 import praw, re
 from markov import Markov
 
+# Checks whether or not the user has any comments
+# I don't think there's a better way to do this...
 def valid_redditor(user):
     comments = user.get_comments(limit=1)
     try:
@@ -8,6 +13,10 @@ def valid_redditor(user):
             return True
     except:
         return False
+
+# Removes links or other weird stuff from the comment
+def format_comment(c):
+    return re.sub("(\[.+\]\(.*\)|https?://.+ )", " ", c)
 
 def main():
     r = praw.Reddit(user_agent="Markov Comment Generator by /u/officialdovahkiin")
@@ -20,7 +29,7 @@ def main():
             comments = user.get_comments(limit=(None if comment_amount <= 0 else comment_amount))
             text = ""
             for c in comments:
-                text += c.body + ". "
+                text += format_comment(c.body) + ". "
             mk = Markov(text)
             sentences = ""
             for i in range(0, sentence_amount):

@@ -1,7 +1,7 @@
-from random import randint
-
 # This class generates a Markov chain based on a given string. It can
 # then be used to generate sentences based on that Markov chain.
+
+from random import randint
 
 class Markov:
     def __init__(self, text):
