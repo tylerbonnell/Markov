@@ -16,7 +16,7 @@ def valid_redditor(user):
 
 # Removes links or other weird stuff from the comment
 def format_comment(c):
-    return re.sub("(\[.+\]\(.*\)|https?://.+ )", " ", c)
+    return re.sub("(\[.+\]\(.*\)|https?:\/\/([^\s]+))", " ", c)
 
 def main():
     r = praw.Reddit(user_agent="Markov Comment Generator by /u/officialdovahkiin")
@@ -40,5 +40,6 @@ def main():
     else:
         print "No comments found for /u/" + name
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     main()
+
